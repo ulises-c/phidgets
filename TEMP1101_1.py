@@ -125,6 +125,7 @@ def periodic_fetch():
             print()
             time.sleep(1 / SAMPLE_FREQ)
     except KeyboardInterrupt:
+        # Exits while loop if "CTRL + C" is pressed
         pass
 
     for s in temp_sensors:
