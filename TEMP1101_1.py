@@ -4,7 +4,7 @@ import time
 from dataclasses import dataclass
 
 """
-Used with Phidgets TEMP1101_1
+Script to gather data with Phidgets TEMP1101_1.
 """
 
 
@@ -134,8 +134,5 @@ def periodic_fetch():
         s.sensor.close()
 
 
-def main():
+if __name__ == "__main__":
     periodic_fetch()
-
-
-main()
