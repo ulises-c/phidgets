@@ -86,9 +86,12 @@ def periodic_fetch():
     Fetches temperature with a consistent refresh rate.
     """
 
+    print("\n --- Press CTRL+C to stop ---\n")
+
     ports = [0, 1, 2]
     ports.append(4)  # Port 4 is a built in IC
     SAMPLE_FREQ = 1  # Hz
+    SLEEP_TIME = 1 / SAMPLE_FREQ
 
     temp_sensors = []
     for port in ports:
@@ -105,9 +108,6 @@ def periodic_fetch():
         )
         sensor.openWaitForAttachment(5000)
 
-    print("\n --- Press any CTRL+C to stop ---\n")
-    time.sleep(1)
-
     try:
         while True:
             for s in temp_sensors:
@@ -123,7 +123,7 @@ def periodic_fetch():
                     s.t_min = t
                 onTemperatureChange(s.sensor, t)
             print()
-            time.sleep(1 / SAMPLE_FREQ)
+            time.sleep(SLEEP_TIME)
     except KeyboardInterrupt:
         # Exits while loop if "CTRL + C" is pressed
         pass
